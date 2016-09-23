@@ -3,6 +3,7 @@ package com.kapitanov.messenger.service;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.kapitanov.messenger.database.Database;
 import com.kapitanov.messenger.model.Message;
@@ -14,6 +15,23 @@ public class MessageService {
 	public MessageService() {
 		messages.put(1L, new Message(1, "Hello World", "koushik"));
 		messages.put(2L, new Message(2, "Hello Jersey", "koushik"));
+	}
+	
+	public List<Message> getAllMessagesPerYear(int year) {
+		List<Message> result = new ArrayList<>();
+		Calendar cal = Calendar.getInstance();
+		for (Message message : messages.values()) {
+			cal.setTime(message.getCreated());
+			if (cal.get(Calendar.YEAR) == year) {
+				result.add(message);
+			}
+		}
+		return result;
+	}
+	
+	public List<Message> getMessagesPaginated(int start, int size) {
+		List<Message> result = new ArrayList<>(messages.values());
+		return result.subList(start, start + size);
 	}
 	
 	public Message addMessag(Message message) {
