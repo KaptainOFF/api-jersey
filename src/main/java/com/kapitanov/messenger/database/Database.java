@@ -18,7 +18,4 @@ public class Database {
 	public static Map<Long, Profile> getProfiles() {
 		return profiles;
 	}
-	
-	
-
 }
