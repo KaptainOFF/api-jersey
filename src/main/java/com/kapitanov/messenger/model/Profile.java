@@ -17,7 +17,6 @@ public class Profile {
 	}
 	
 	public Profile(long id, String firstName, String lastName, String profileName) {
-		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;

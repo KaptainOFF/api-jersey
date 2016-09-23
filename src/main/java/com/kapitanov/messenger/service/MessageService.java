@@ -11,6 +11,11 @@ public class MessageService {
 	
 	private static Map<Long, Message> messages = Database.getMessages();
 	
+	public MessageService() {
+		messages.put(1L, new Message(1, "Hello World", "koushik"));
+		messages.put(2L, new Message(2, "Hello Jersey", "koushik"));
+	}
+	
 	public Message addMessag(Message message) {
 		message.setId(messages.size() + 1);
 		messages.put(message.getId(), message);
@@ -30,15 +35,15 @@ public class MessageService {
 		return message;
 	}
 	
-	public void removeMessage(Long id) {
-		messages.remove(id);
+	public Message removeMessage(Long id) {
+		return messages.remove(id);
 	}
 	
-	public Message updateMessage(Long id, Message message) {
+	public Message updateMessage(Message message) {
 		if (message.getId() < 0) {
 			return null;
 		}
-		messages.put(id, message);
+		messages.put(message.getId(), message);
 		return message;
 	}
 
